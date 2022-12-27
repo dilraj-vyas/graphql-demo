@@ -1,0 +1,12 @@
+type Query{
+    allEmployee:[Employee]
+    getEmployee(id:Int):Employee
+}
+
+type Employee{
+
+    id:ID!
+    name:String
+    email:String
+    designation:String
+}
