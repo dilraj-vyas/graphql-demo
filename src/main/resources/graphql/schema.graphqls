@@ -1,6 +1,6 @@
 type Query{
     allEmployee:[Employee]
-    getEmployee(id:Int):Employee
+    getEmployee(empId:Int):Employee
 }
 
 type Mutation{

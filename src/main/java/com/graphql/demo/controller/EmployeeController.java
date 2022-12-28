@@ -20,8 +20,8 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @QueryMapping("getEmployee")
-    public Employee getEmployee(@Argument Integer id) {
-        return employeeService.getEmployee(id);
+    public Employee getEmployee(@Argument Integer empId) {
+        return employeeService.getEmployee(empId);
     }
 
     @QueryMapping("allEmployee")
