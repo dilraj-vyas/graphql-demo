@@ -1,12 +1,11 @@
 package com.graphql.demo.service;
 
 import com.graphql.demo.entity.Employee;
-
-import java.util.List;
+import com.graphql.demo.model.EmployeeResponse;
 
 public interface EmployeeService {
 
-    public List<Employee> getAllEmployee();
+    public EmployeeResponse getAllEmployee(int pageNo, int pageSize, String sortBy, String sortDir);
 
     public Employee getEmployee(Integer empId);
 

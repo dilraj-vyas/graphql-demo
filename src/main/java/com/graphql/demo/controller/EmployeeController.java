@@ -1,17 +1,15 @@
 package com.graphql.demo.controller;
 
-import com.graphql.demo.entity.Employee;
-import com.graphql.demo.model.EmployeeRequest;
-import com.graphql.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.graphql.demo.entity.Employee;
+import com.graphql.demo.model.EmployeeRequest;
+import com.graphql.demo.model.EmployeeResponse;
+import com.graphql.demo.service.EmployeeService;
 
 @Controller
 public class EmployeeController {
@@ -25,14 +23,15 @@ public class EmployeeController {
     }
 
     @QueryMapping("allEmployee")
-    public List<Employee> getAllEmployee() {
-        return employeeService.getAllEmployee();
+    public EmployeeResponse getAllEmployee(@Argument int pageNo, @Argument int pageSize, @Argument String sortBy, @Argument String sortDir) {
+        return employeeService.getAllEmployee(pageNo, pageSize, sortBy, sortDir);
     }
 
 
     @MutationMapping("createEmployee")
     public Employee create(@Argument EmployeeRequest employeeRequest) {
-        Employee employee = Employee.builder().name(employeeRequest.getName()).email(employeeRequest.getName()).designation(employeeRequest.getDesignation()).build();
+        Employee employee =
+            Employee.builder().name(employeeRequest.getName()).email(employeeRequest.getName()).designation(employeeRequest.getDesignation()).build();
         return employeeService.save(employee);
     }
 
