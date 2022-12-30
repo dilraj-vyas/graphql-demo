@@ -1,22 +1,31 @@
 type Query{
-    allEmployee:[Employee]
+    allEmployee(pageNo:Int,pageSize:Int,sortBy:String,sortDir:String):EmployeeResponse
     getEmployee(empId:Int):Employee
 }
 
 type Mutation{
     createEmployee(employeeRequest:EmployeeRequest):Employee
 }
-
+type Employee{
+    id:ID!
+    name:String
+    email:String
+    designation:String
+}
 input EmployeeRequest{
     name:String
     email:String
     designation:String
 }
 
-type Employee{
-
-    id:ID!
-    name:String
-    email:String
-    designation:String
+type EmployeeResponse{
+    pageNo:Int
+    pageSize:Int
+    totalElements:Int
+    totalPages:Int
+    last:Boolean
+    content:[Employee]
 }
+
+
+
